@@ -1,0 +1,31 @@
+version: "2"
+
+services:
+  app:    
+    build: .
+    ports: 
+      - "80:80"
+    volumes:
+      - ".:/var/www/html"
+    links:
+      - db    
+      
+  db:
+    image: "mysql:5.7.28"
+    ports: 
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "secret"
+    volumes:
+      - volume1:/var/lib/mysql
+      
+  phpmyadmin:
+    image: "phpmyadmin:5.0"
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_HOST=db
+      
+volumes:
+  volume1:  
+ 
