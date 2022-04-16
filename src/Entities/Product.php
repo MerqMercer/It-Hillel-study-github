@@ -29,38 +29,41 @@ class Product
 
     public function __set($variable, $value)
     {
-        switch ($variable) {
-            case 'price':
-                $this->price = $this->casts['price']::set($value);
-                break;
-            case 'attributes':
-                $this->attributes = $this->casts['attributes']::set($value);
-                break;
-            case 'updatedAt':
-                $this->updatedAt = $this->casts['updatedAt']::set($value);
-                break;
+        if ($this->checkProductVariable($variable)) {
+            $this->$variable = $this->casts[$variable]::set($value);
         }
     }
 
     public function __get($variable)
     {
-        switch ($variable) {
-            case 'price':
-                return $this->casts['price']::get($this->price);
-            case 'attributes':
-                return $this->casts['attributes']::get($this->attributes);
-            case 'updatedAt':
-                return $this->casts['updatedAt']::get($this->updatedAt);
+        if ($this->checkProductVariable($variable)) {
+            return $this->casts[$variable]::get($this->$variable);
         }
+    }
+
+    public function checkProductVariable($variable)
+    {
+        if (isset($this->$variable)) {
+            return true;
+        } else {
+            throw new \Exception('Invalid Field');
+        }
+    }
+
+    public function camelToDashed($string)
+    {
+        return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1_', $string));
     }
 
     public function __toString(): string
     {
-        $arr = [
-            'price' => $this->casts['price']::get($this->price),
-            'attributes' => $this->casts['attributes']::get($this->attributes),
-            'updated_at' => $this->casts['updatedAt']::get($this->updatedAt)
-        ];
+        $fields = array_keys($this->casts);
+        $arr = array();
+
+        foreach ($fields as $field) {
+            $arr[$this->camelToDashed($field)] = $this->casts[$field]::get($this->$field);
+        }
+
         return print_r($arr, true);
     }
 }
