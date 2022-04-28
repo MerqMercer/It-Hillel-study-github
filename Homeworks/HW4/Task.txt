@@ -1,0 +1,9 @@
+Зарегистрироваться в трёх системах управления репозиториями кода для Git:
+
+https://github.com/join?source=header-home
+https://gitlab.com/users/sign_in#register-pane
+https://bitbucket.org/account/signup/
+
+Взять три любых проекта (из нашего курса, с прошлых дз), создать репозитории и синхронизировать их с системах управления GitHub, GitLab, Bitbucket. По одному проекту на сервис.
+
+Прислать ссылки на репозитории.

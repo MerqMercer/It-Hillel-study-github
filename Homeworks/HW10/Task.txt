@@ -1,0 +1,54 @@
+Тестовое задание по ООП
+
+Задача
+
+Реализовать фабрику по созданию трансформеров. Каждый трансформер включает показатели веса, скорости и высоты. Отдельный вид трансформеров обладает способностью объединения с другими типами. В этом случае результирующая скорость будет равна минимальной из всех объединенных трансформеров, а вес и высота — сумме соответствующих показателей. Классы должны быть спроектировать так, чтобы можно было добавлять новые типы трансформеров и создавать их в неограниченном количестве через фабрику.
+
+
+
+Пример использования
+
+
+
+// создание фабрики трансформеров
+$factory = new TransformerFactory();
+
+// добавление Transformer1 и Transformer2 в производство
+$factory->addType(new Transformer1());
+$factory->addType(new Transformer2());
+
+// выводит массив с пятью объектами Transformer1
+print_r($factory->createTransformer1(5));
+// выводит массив с двумя объектами Transformer2
+print_r($factory->createTransformer2(2));
+
+// формирование объединённого трансформера
+$mergeTransformer = new MergeTransformer();
+$mergeTransformer->addTransformer(new Transformer2());
+$mergeTransformer->addTransformer($factory->createTransformer2(2));
+// добавление нового типа трансформера в производство
+$factory->addType($mergeTransformer);
+
+// выпуск объединённого трансформера и вывод его показателей
+$transformer = reset($factory->createMergeTransformer(1));
+echo $transformer->getSpeed(); // минимальная скорость
+echo $transformer->getWeight(); // сумма всех весов
+echo $transformer->getHeight(); // сумма всех высот
+
+
+Требования
+
+
+
+Язык программирования: PHP 7 и выше;
+Код должен соответствовать стандарту PSR-12;
+Классы должны подгружаться авто-загрузкой по стандарту PSR-4 (используйте composer);
+Инструкция по запуску. Желательно использовать контейнеризацию с возможностью запуска через docker-compose;
+Выложить код на GitHub/BitBicket/GitLab в приватный репозиторий. Открыть доступ на аккаунт stanislav.protasevich@gmail.com
+
+
+Усложнения
+
+
+
+Создать тесты для классов TransformerFactory и MergeTransformer в которых проверить код на работоспособность по примеру выше.

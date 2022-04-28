@@ -1,0 +1,31 @@
+version: "2"
+
+services:
+  app:    
+    build: .
+    ports: 
+      - "80:80"
+    volumes:
+      - ".:/var/www/html"
+    links:
+      - db    
+      
+  db:
+    image: "postgres:12.1"
+    ports: 
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "secret"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      
+  adminer:
+    image: "adminer:4.7.5"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "db"
+      
+volumes:
+  pgdata:  
+ 

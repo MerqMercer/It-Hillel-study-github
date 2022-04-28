@@ -1,0 +1,10 @@
+Solution:
+Команды (запустил три образа одновременно):
+
+docker run -d -p 80:80 --name php_7.4.1_apache_image -v %cd%:/var/www/html php:7.4.1-apache
+
+docker run -d -p 81:80 --name php_7.0_apache_image -v %cd%:/var/www/html php:7.0-apache
+
+docker run -d -p 82:80 --name php_5.4_apache_image -v %cd%:/var/www/html php:5.4-apache
+
+Поскольку я использую Windows мне вместо переменной PWD пришлось прописать %cd%

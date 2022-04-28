@@ -1,0 +1,33 @@
+Task:
+
+Использовать следующие образы в docker-compose.yaml:
+
+1. Apache + PHP
+
+php:7.4.1-apache + Dockerfile
+
+https://hub.docker.com/_/php
+
+2. MySQL
+
+mysql:5.7.28
+
+https://hub.docker.com/_/mysql
+
+3. phpMyAdmin - интерфейс для управления MySQL
+
+phpmyadmin/phpmyadmin:4.9.1
+
+https://hub.docker.com/r/phpmyadmin/phpmyadmin
+
+Подсказка: для работы с MySQL через PHP необходимо установить расширение pdo_mysql. Подсмотреть можно в файлах, загруженных к уроку. Для корректной работы phpMyAdmin в файле docker-compose в секции environment обязательно нужно указать PMA_HOST, равный названию сервиса контейнера MySQL.
+
+Предоставить:
+
+1. Файлы Dockerfile, docker-compose.yaml и прочие для запуска контейнеров
+
+2. Сформировать правильный DSN (строку подключения) для PDO и загрузить фрагмент подключении (new PDO(...))
+
+https://www.php.net/manual/ru/ref.pdo-mysql.connection.php
+
+3. Скриншот из phpMyAdmin после ввода всех параметров подключения

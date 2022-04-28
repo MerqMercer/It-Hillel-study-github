@@ -1,0 +1,29 @@
+1.Проработать работу авто загрузчика, показанную на уроке.
+
+    a.Создать каталог src
+    b.Создать любой класс в каталоге/подкаталоге src
+    c.По примеру урока создать файл автозагрузки vendor/autoload.php и поместить в него класс из ссылки
+    d.Повторить проделанное на уроке
+    e.Понять предназначение функции spl_autoload_register
+
+2.Создать свой собственный класс автозагрузки (упрощённый) по примеру класса Psr4AutoloaderClass
+
+Скелет класса авто загрузчика:
+
+class Autoloader
+{
+  public function addNamespace(string $prefix, string $dir)
+  {
+
+  }
+
+  public function register()
+  {
+    spl_autoload_register(array($this, 'auroload'));
+  }
+
+  public function autoload($class)
+  {
+     
+  }
+}

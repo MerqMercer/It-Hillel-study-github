@@ -1,0 +1,39 @@
+Использовать следующие образы в docker-compose.yaml:
+
+1. Apache + PHP
+
+php:7.4.1-apache + Dockerfile
+
+https://hub.docker.com/_/php
+
+2. PostgreSQL
+
+postgres:12.1
+
+https://hub.docker.com/_/postgres
+
+3. Adminer - интерфейс для управления БД
+
+adminer:4.7.5
+
+https://hub.docker.com/_/adminer
+
+Подсказка: для работы с PostgreSQL через PHP необходимо установить расширение pdo_pgsql. Однако у этого расширеия есть зависимость от библиотеки libpq-dev. Перед установки зависимости необходимо обновить пакеты системы.
+
+Для обновления пакетов системы и установки libpq и pdo_pgsql необходимо запустить команды в Dockerfile:
+
+1. apt-get update
+
+2. apt-get install libpq-dev -y
+
+3. docker-php-ext-install pdo_pgsql
+
+Предоставить:
+
+1. Файлы Dockerfile, docker-compose.yaml и прочие для запуска контейнеров
+
+2. Сформировать правильный DSN (строку подключения) для PDO и загрузить фрагмент подключении (new PDO(...))
+
+https://www.php.net/manual/ru/ref.pdo-pgsql.connection.php
+
+3. Скриншот из Adminer после ввода всех параметров подключения
